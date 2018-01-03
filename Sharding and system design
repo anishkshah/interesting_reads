@@ -1,0 +1,10 @@
+Pintrest blog:
+
+https://medium.com/@Pinterest_Engineering/sharding-pinterest-how-we-scaled-our-mysql-fleet-3f341e96ca6f
+
+Key Info:
+1. Interact with the master in production. You never want to read/write to a slave in production. Slaves lag, which causes strange bugs.
+2. MySQL shard configs is mainteained by ZooKeeper.
+3. How to shard efficiently:
+   ID = (shard ID << 46) | (type ID << 36) | (local ID << 0)
+   makeing the relevant data (typeID/LocalID or category/subcategory) within the same shard.
